@@ -1,37 +1,28 @@
-import Greeting from './Components/Greeting';
-import Header from './Components/Header';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import MovieList from './Components/MovieList';
-import React from 'react';
-import Card from './Components/Card';
-import ProfileCard from './Components/ProfileCard';
-import './App.css';
-
-const members = [
-  { id: 1, name: 'นายมังดี้ ดี ลูฟี่', nickname: 'ลูฟี่',
-    major: 'ราชาโจรสลัด', favorites: ['เนื้อ', 'เนื้อเหมือนกันแต่อีกบรรทัดนึง'] },
-{ id: 1, name: 'อุซึมากิ นารูโตะ', nickname: 'นารูโตะ',
-    major: 'โฮคาเงะ', favorites: ['ราเมน', 'ไอติม'] },
-{ id: 1, name: 'ซงจินอู', nickname: 'ซง',
-    major: 'ฮันเตอร์แรงค์ S', favorites: ['วิ่ง', 'เดิน'] },
-];
+import Home from './pages/Home';
+import Movies from './pages/Movies';
+import About from './pages/About';
+import MovieDetail from './pages/MovieDetail';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <div className="container">
-      <h1>สมาชิกกลุ่มของเรา</h1>
-      <div className="card-row">
-        {members.map((m) => (
-          <ProfileCard
-            key={m.id}
-            name={m.name}
-            nickname={m.nickname}
-            major={m.major}
-            favorites={m.favorites}
-          />
-        ))}
-      </div>
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <Navbar />                {/* ← เห็นทุกหน้า */}
+      <main className="flex-1">
+        <Routes>                {/* ← เฉพาะตรงนี้ที่สลับตาม URL */}
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/movies/:id" element={<MovieDetail />} />
+          <Route path="*" element={<NotFound />} /> 
+        </Routes>
+      </main>
+      <Footer />                {/* ← เห็นทุกหน้า */}
     </div>
+    
   );
 }
 
