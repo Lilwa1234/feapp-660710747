@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { movies } from "../Data/Data";
 import MovieCard from "../Components/MovieCard.jsx";
 import MovieGallery from "../Components/MovieGallery.jsx";
+import SearchBox from "../Components/SearchBox.jsx";
+
 function Home() {
   return (
     <div className="p-8 text-center">
